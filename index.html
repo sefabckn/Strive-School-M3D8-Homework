@@ -73,31 +73,32 @@
             }
 
         }
-        const myObject = [
+        const myObject = 
         {
-            "_id": "5d318e1a8541744830bef139", //SERVER GENERATED
-            "name": "app test 1",  //REQUIRED
-            "description": "somthing longer", //REQUIRED
+            
+            "name": "Mobile Phone",  //REQUIRED
+            "description": "3310", //REQUIRED
             "brand": "nokia", //REQUIRED
             "imageUrl": "https://drop.ndtv.com/TECH/product_database/images/2152017124957PM_635_nokia_3310.jpeg?downsize=*:420&output-quality=80", //REQUIRED
             "price": 100, //REQUIRED
-            "userId": "admin", //SERVER GENERATED
-            "createdAt": "2019-07-19T09:32:10.535Z", //SERVER GENERATED
-            "updatedAt": "2019-07-19T09:32:10.535Z", //SERVER GENERATED
-            "__v": 0 //SERVER GENERATED
+            
 }
-        ]
         
-        let response = await fetch('https://striveschool-api.herokuapp.com/api/product/', {
+        const postItems = async ()=>{
+            const fetchResponse = await fetch('https://striveschool-api.herokuapp.com/api/product/', {
         method: 'POST',
         body: JSON.stringify(myObject),
-        headers: new Headers({
-        'Content-Type': 'application/json'
-    })
+        headers:{
+            'Content-Type': 'application/json',
+            Authorization:
+                //Token is valid for 14 days
+                  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTgyOTU0M2FhY2FhMjAwMTU1MmExOWYiLCJpYXQiOjE2MzU5NDgwNTcsImV4cCI6MTYzNzE1NzY1N30.qmdlrCU8u0m6iZk-6-n6Vl6J01JbhvKpSeJpF0qs-LQ",
+                  'Accept': 'application/json'}
 })
-
-
-
+        const response = await fetchResponse.json()
+        return response
+        }
+        
 
         //DOM manipulation to add the items in the table
         const Row = (item)=>
@@ -120,6 +121,7 @@
         window.onload = ()=>{
             fetchProducts()
             listProducts()
+            postItems()
         }
    
     </script>
