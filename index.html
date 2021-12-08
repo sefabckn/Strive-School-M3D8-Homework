@@ -93,7 +93,9 @@
             <td>${item.name}</td>
             <td>${item.brand}</td>
             <td>${item.price}</td>
-            <td><a href='${item.imageUrl}'>image<a></td>
+            <td><div class="card" style="width: 18rem;">
+                <img src="${item.imageUrl}" class="card-img-top" alt="...">
+                </div><td>
           </tr>`;
         //DOM manipulation to add the items in the table
      
@@ -108,7 +110,6 @@
         
         window.onload =()=>{
             listProducts()
-          
         }
    
     </script>

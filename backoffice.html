@@ -89,9 +89,11 @@
             try {
                 const fetchResponse = await fetch(url, {
                 method: 'POST',
-                body: JSON.stringify(inputValues),
+                //body: JSON.stringify(inputValues),
                 headers: {
-                    "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTgyOTU0M2FhY2FhMjAwMTU1MmExOWYiLCJpYXQiOjE2Mzg5NzIwMjIsImV4cCI6MTY0MDE4MTYyMn0.C95NcszmgYxUMX8JeddBCiLb2nO7_-vAXA5WHH9qI4E"
+                    'Content-Type': 'application/json',
+                    "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTgyOTU0M2FhY2FhMjAwMTU1MmExOWYiLCJpYXQiOjE2Mzg5NzIwMjIsImV4cCI6MTY0MDE4MTYyMn0.C95NcszmgYxUMX8JeddBCiLb2nO7_-vAXA5WHH9qI4E",
+                    'Accept': 'application/json'
                 }
                 })
                 if(fetchResponse.ok){
@@ -103,9 +105,7 @@
             }
 
        }
-        
-       
-
+   
         //POST EVERYTHING THROUGH BACKOFFICE INPUTS AND GET THEM ON THE FRONTEND PAGE
 
 
