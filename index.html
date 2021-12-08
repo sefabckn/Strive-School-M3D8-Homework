@@ -39,6 +39,7 @@
                     <th scope="col">Name</th>
                     <th scope="col">Brand</th>
                     <th scope="col">Price</th>
+                    <th scope="col">Image</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -51,20 +52,21 @@
 
 
     <script>
-      
+        globalArray= []
         const fetchProducts = async () => {
             try {
                 const response = await fetch(
                 "https://striveschool-api.herokuapp.com/api/product/",
             {
               headers: {
-                Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTgyOTU0M2FhY2FhMjAwMTU1MmExOWYiLCJpYXQiOjE2MzU5NDgwNTcsImV4cCI6MTYzNzE1NzY1N30.qmdlrCU8u0m6iZk-6-n6Vl6J01JbhvKpSeJpF0qs-LQ"
+                "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTgyOTU0M2FhY2FhMjAwMTU1MmExOWYiLCJpYXQiOjE2Mzg5NzIwMjIsImV4cCI6MTY0MDE4MTYyMn0.C95NcszmgYxUMX8JeddBCiLb2nO7_-vAXA5WHH9qI4E"
               },
             }
           );
                 if(response.ok){
-                    const result = await response.json();
-                    return result
+                    const events = await response.json()
+                    globalArray = events
+                    return events
                 }
                 else{
                     throw new Error ("Users not Fetched!!")
@@ -72,8 +74,8 @@
             } catch (error) {
                 throw error;
             }
-
-        }
+        
+        } 
       /*   const myObject = 
         {
             "name": "Mobile Phone",  //REQUIRED
@@ -91,9 +93,11 @@
             <td>${item.name}</td>
             <td>${item.brand}</td>
             <td>${item.price}</td>
+            <td><a href='${item.imageUrl}'>image<a></td>
           </tr>`;
         //DOM manipulation to add the items in the table
-     /*   const listProducts = async() =>{
+     
+        const listProducts = async() =>{
            const items = await fetchProducts();
            const tbody = document.querySelector("tbody")
            items.forEach(item => {
@@ -101,10 +105,10 @@
                
            });
        }
-         */
-        window.onload = ()=>{
-            fetchProducts()
+        
+        window.onload =()=>{
             listProducts()
+          
         }
    
     </script>
