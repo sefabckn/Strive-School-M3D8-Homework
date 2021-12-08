@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 </head>
 <body>
-    <div class="container-fluid">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Navbar</a>
+    <div class="container-fluid mb-2">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Strivazon</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -47,10 +47,11 @@
                 <input type="text" class="form-control" id="imageUrl" >
             </div>
             <div class="input-group mb-3">
-                <div class="input-group-prepend" id='price'>
-                  <span class="input-group-text">Price</span>
+                <div class="input-group-prepend" >
+                <span class="input-group-text">Price</span>
+               
             </div>
-                <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)">
+                <input id ='price' type="number" class="form-control" aria-label="Amount (to the nearest dollar)">
             </div>
             <button type="submit" class="btn btn-primary">Save</button>
             <button type="submit" class="btn btn-info mx-3">Edit</button>
@@ -87,16 +88,17 @@
             try {
                 const fetchResponse = await fetch(url, {
                 method: 'POST',
-                //body: JSON.stringify(inputValues),
+                body: JSON.stringify(inputValues),
                 headers: {
-                    'Content-Type': 'application/json',
                     "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTgyOTU0M2FhY2FhMjAwMTU1MmExOWYiLCJpYXQiOjE2Mzg5NzIwMjIsImV4cCI6MTY0MDE4MTYyMn0.C95NcszmgYxUMX8JeddBCiLb2nO7_-vAXA5WHH9qI4E",
-                    'Accept': 'application/json'
+                    'Content-Type': 'application/json',
+                    //'Accept': 'application/json'
                 }
                 })
+                
                 if(fetchResponse.ok){
                     const response = await fetchResponse.json()
-                    console.log(respo)
+                    console.log(response)
                     alert("Product saved successfully with an id of " + response._id)
                 }
             } catch (error) {
