@@ -29,6 +29,8 @@
     </div>
     
     <div class="container">
+        <hr/>   
+        <span id='error-span'></span>
         <form onsubmit="handleSubmit(event)">
             <div class="form-group">
               <label for="name">Product Name</label>
@@ -54,7 +56,7 @@
                 <input id ='price' type="number" class="form-control" aria-label="Amount (to the nearest dollar)">
             </div>
             <button type="submit" class="btn btn-primary">Save</button>
-            <button type="submit" class="btn btn-info mx-3">Edit</button>
+            
         </form>
     </div>
     <script>
@@ -92,7 +94,7 @@
                 headers: {
                     "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTgyOTU0M2FhY2FhMjAwMTU1MmExOWYiLCJpYXQiOjE2Mzg5NzIwMjIsImV4cCI6MTY0MDE4MTYyMn0.C95NcszmgYxUMX8JeddBCiLb2nO7_-vAXA5WHH9qI4E",
                     'Content-Type': 'application/json',
-                    //'Accept': 'application/json'
+                    'Accept': 'application/json'
                 }
                 })
                 
@@ -102,7 +104,10 @@
                     alert("Product saved successfully with an id of " + response._id)
                 }
             } catch (error) {
-                alert(error)
+                const errorMessage = document.getElementById('error-span')
+                errorMessage.innerHTML = `<div class="alert alert-danger" role="alert">
+                                            ${error.message}
+                                            </div>`
             }
 
        }
